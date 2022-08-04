@@ -1,2 +1,2 @@
 # SAuto
-The most basic free website
+the simplest free car sales website
