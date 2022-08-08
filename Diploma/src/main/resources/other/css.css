@@ -1,0 +1,191 @@
+html {
+    scroll-padding-top: 60px; /* height of sticky header */
+}
+body {
+    background: url('/images/ferrari.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    font-family: Montserrat, sans-serif;
+    color: #00138b;
+}
+nav{
+    background: rgb(132,167,49);
+    background: radial-gradient(circle, rgba(132,167,49,1) 22%, rgba(95,116,48,1) 69%);
+    color: ghostwhite;
+}
+.index-1 {
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+.index-2 {
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 50vh;
+}
+.index-3 {
+    display: block;
+    height: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 50vh;
+}
+.index-background-1 {
+    background-image: url('/images/ferrari.jpg');
+    background-position: center center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.index-background-2 {
+    background-image: url('/images/mercedes_benz_s.jpg');
+    background-position: center center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.index-logo-1 {
+    z-index: 10;
+}
+.sticky-offset{
+    top:70px;
+}
+.manual-text-size {
+    font-size: 12px;
+}
+strong {
+    color: #00008b !important;
+}
+.btn{
+    background-color: #00008b;
+    color: whitesmoke;
+}
+.btn-link{
+    background-color: white;
+    color: cadetblue;
+}
+.btn-link:hover{
+    background-color: #5f9ea0;
+    color: white;
+}
+.btn-secondary{
+    background-color: indianred;
+    color: whitesmoke;
+}
+.btn-secondary:hover{
+    background-color: dimgrey !important;
+}
+.btn:hover{
+    background-color:#cd5c5c;
+}
+.btn-no-outline:focus{
+    outline: none;
+    box-shadow: none;
+}
+.sign-in-btn{
+    width: 100%;
+}
+.registration-btn{
+    width: 100%;
+    background-color: mediumslateblue;
+}
+.registration-btn:hover{
+    background-color: mediumslateblue;
+    color: whitesmoke;
+}
+.edit-icon{
+    background-color:white;
+    color: blue;
+}
+.edit-icon:hover{
+    background-color:blue;
+    color: white;
+}
+.navbar-brand{
+    padding: 0px;
+}
+.local{
+    margin-right: 5px;
+    width:30px;
+    height:30px;
+}
+.login{
+    margin-right: 35px;
+    width:20px;
+    height:20px;
+}
+.addItemForm, .removeItemForm, .updateRequestItemQuantityForm {
+    display: inline;
+}
+.transparent-container{
+    width:500px;
+    background:rgba(255,255,255,0.7);
+    border-radius:6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logoSignIn{
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    width:100px;
+    height:100px;
+}
+.social {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+.social:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 767px) {
+    #photosCarousel .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    #photosCarousel.carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+#photosCarousel .carousel-inner .carousel-item.active,
+#photosCarousel .carousel-inner .carousel-item-next,
+#photosCarousel .carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* средние и большие экраны */
+@media (min-width: 768px) {
+
+    #photosCarousel .carousel-inner .carousel-item-end.active,
+    #photosCarousel .carousel-inner .carousel-item-next {
+        transform: translateX(33.333333%);
+    }
+
+    #photosCarousel .carousel-inner .carousel-item-start.active,
+    #photosCarousel .carousel-inner .carousel-item-prev {
+        transform: translateX(-33.333333%);
+    }
+}
+
+#photosCarousel .carousel-inner .carousel-item-end,
+#photosCarousel .carousel-inner .carousel-item-start {
+    transform: translateX(0);
+}
