@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+
+<body>
+<section layout:fragment="content">
+    <!-- Page Content -->
+    <div class="container">
+        <div class="card border-0 shadow my-5 bg-light">
+            <div class="card-body p-5">
+                <div class="container">
+                    <div class="pt-1 pb-2 text-center">
+                        <img class="d-block mx-auto mb-4" src="/images/SAuto.jpg" width="300">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 order-md-2 mb-4">
+                            <ul class="list-group mb-3 sticky-offset sticky-top">
+
+                                <li class="list-group-item d-flex justify-content-between lh-condensed align-items-center row" th:each="orderItem : ${currentOrder.getOrderItemsList()}">
+                                    <div class="col-md-8">
+                                        <h6 class="my-0" th:text="${orderItem.getDish().getLocalizedName()}"></h6>
+                                        <p class="text-muted manual-text-size" th:text="${orderItem.getDish().getLocalizedDescription()}"></p>
+                                    </div>
+                                    <span class="text-muted col-md-4 align-middle" th:text="${#numbers.formatDecimal(orderItem.getDish().getPrice()*orderItem.getQuantity(), 0, 'COMMA', 2, 'POINT')} + ' ' + #{general.rub}"></span>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="col-md-8 order-md-1">
+
+                            <form class="needs-validation" method="post" action="/checkOut" novalidate="">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" th:text="#{forms.firstname.label}"></label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" th:value="${currentUser} ? ${currentUser.getFirstName()} : ''" required="" pattern="^[A-Za-zА-Яа-яёЁ\- ]+$">
+                                        <div class="invalid-feedback" th:text="#{forms.firstname.error}"></div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" th:text="#{forms.lastname.label}"></label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" th:value="${currentUser} ? ${currentUser.getLastName()} : ''" required="" pattern="^[A-Za-zА-Яа-яёЁ\- ]+$">
+                                        <div class="invalid-feedback" th:text="#{forms.lastname.error}"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" th:text="#{forms.phone.label}"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+375</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:value="${currentUser} ? ${currentUser.getPhoneNumber()} : ''" required="" pattern="^(\d{2}|[(]?[0-9]{2}[)])(\d{7})$">
+                                        <div class="invalid-feedback" style="width: 100%;" th:text="#{forms.phone.error}"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" th:value="${currentUser} ? ${currentUser.getEmail()} : ''" required="">
+                                    <div class="invalid-feedback" th:text="#{forms.email.error}"></div>
+                                </div>
+                                <hr class="mb-4">
+                                <h4 class="mb-3" th:text="#{forms.address.title}"></h4>
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <label for="area" th:text="#{forms.area.label}"></label>
+                                        <input type="text" class="form-control" id="area" name="area" th:value="${lastAddress} ? ${lastAddress.getArea()} : ''" required="" pattern="^[0-9A-Za-zА-Яа-яёЁ\- .]+$">
+                                        <div class="invalid-feedback" th:text="#{forms.area.error}"></div>
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <label for="district" th:text="#{forms.district.label}"></label>
+                                        <input type="text" class="form-control" id="district" name="district" th:value="${lastAddress} ? ${lastAddress.getDistrict()} : ''" required="" pattern="^[0-9A-Za-zА-Яа-яёЁ\- .]+$">
+                                        <div class="invalid-feedback" th:text="#{forms.district.error}"></div>
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <label for="locality" th:text="#{forms.locality.label}"></label>
+                                        <input type="text" class="form-control" id="locality" name="locality" th:value="${lastAddress} ? ${lastAddress.getLocality()} : ''" required="" pattern="^[0-9A-Za-zА-Яа-яёЁ\- .]+$">
+                                        <div class="invalid-feedback" th:text="#{forms.locality.error}"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

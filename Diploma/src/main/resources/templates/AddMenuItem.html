@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<body>
+<section layout:fragment="content">
+  <!-- Page Content -->
+  <div class="container">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <div class="pt-1 pb-2 text-center">
+          <img class="d-block mx-auto mb-4" src="/images/SAuto.jpg" width="300">
+        </div>
+        <form action="/addMenuItem" class="needs-validation" novalidate="" method="post">
+          <input type="hidden" name="dishId" th:unless="${dish == null}" th:value="${dish.getId()}">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="dishName">Название блюда</label>
+              <input type="text" class="form-control" id="dishName" name="dishName" placeholder="" th:value="${dish == null}? '' : ${dish.getName()}" required="" pattern="^[0-9А-Яа-яёЁ\- ()!?,:]+$">
+              <div class="invalid-feedback" th:text="#{forms.dish.name.error}"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dishNameEng">Dish name</label>
+              <input type="text" class="form-control" id="dishNameEng" name="dishNameEng" placeholder="" th:value="${dish == null}? '' : ${dish.getNameEng()}" required="" pattern="^[0-9A-Za-z\- ()!?,:]+$">
+              <div class="invalid-feedback" th:text="#{forms.dish.name.error}"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="dishDescription">Описание</label>
+              <textarea type="text" class="form-control" id="dishDescription" name="dishDescription" placeholder="" th:text="${dish == null}? '' : ${dish.getDescription()}" required=""></textarea>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dishDescriptionEng">Description</label>
+              <textarea type="text" class="form-control" id="dishDescriptionEng" name="dishDescriptionEng" placeholder="" th:text="${dish == null}? '' : ${dish.getDescriptionEng()}" required=""></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="dishUrl" th:text="#{forms.dish.url.label}"></label>
+              <input type="url" class="form-control" id="dishUrl" name="dishUrl" placeholder="" th:value="${dish == null}? '' : ${dish.getImage()}" required="">
+              <div class="invalid-feedback" th:text="#{forms.dish.url.error}"></div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="dishPrice" th:text="#{forms.dish.price.label}"></label>
+              <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="" th:value="${dish == null}? '' : ${#numbers.formatDecimal(dish.getPrice(), 1, 'COMMA', 2, 'POINT')}" required="" pattern="^\d+(\.\d{2})?$">
+              <div class="invalid-feedback" th:text="#{forms.dish.price.error}"></div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="dishCategory" th:text="#{forms.dish.category.label}"></label>
+              <select class="form-select" id="dishCategory" name="dishCategory">
+                <option th:each="category : ${categories}" th:text="${category.getLocalizedName()}" th:value="${category.getId()}"></option>
+              </select>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-success shadow" th:text="#{buttons.save}"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
